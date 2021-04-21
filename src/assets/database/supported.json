@@ -1,0 +1,72 @@
+{
+    "languages": [
+        ["English", "en", true],
+        ["French", "fr", true],
+        ["German", "de", true],
+        ["Russian", "ru", true],
+        ["Spanish", "sp", true]
+    ],
+
+    "codecs": {
+        "audio": [
+            "mp3",
+            "m4a",
+            "Opus",
+            "Flac",
+            "Wav"
+        ],
+        "audioQuality": [
+            "64 Kbps", 
+            "128 Kbps", 
+            "192 Kbps", 
+            "256 Kbps", 
+            "320 Kbps"
+        ],
+
+        "video": [
+            "mp4",
+            "mov",
+            "mkv",
+            "webm"
+        ],
+        "videoQuality": [
+            "lowest", 
+            "highest"
+        ]
+    },
+
+    "accentColors": [
+        ["rgb(1, 200, 83)", "green"],
+        ["rgb(255, 83, 83)", "light_red"],
+        ["rgb(213, 1, 0)", "light_red_1"],
+        ["rgb(255, 65, 129)", "pink"],
+        ["rgb(196, 17, 98)", "light_purple"],
+        ["rgb(224, 64, 252)", "rosa"],
+        ["rgb(170, 0, 255)", "dark_purple"],
+        ["rgb(124, 77, 255)", "blue_purple"],
+        ["rgb(98, 0, 233)", "dark_purple_2"],
+        ["rgb(83, 109, 254)", "light_blue"],
+        ["rgb(48, 79, 255)", "light_blue_1"],
+        ["rgb(67, 138, 254)", "light_blue_2"],
+        ["rgb(42, 98, 255)", "blue"],
+        ["rgb(63, 196, 255)", "sky_blue"],
+        ["rgb(0, 145, 234)", "dirty_blue"],
+        ["rgb(23, 255, 255)", "ultra_blue"],
+        ["rgb(0, 184, 212)", "dirty_blue_1"],
+        ["rgb(100, 254, 218)", "ultra_blue_1"],
+        ["rgb(1, 191, 165)", "dirty_blue_2"],
+        ["rgb(178, 255, 89)", "green_yellow"],
+        ["rgb(100, 221, 22)", "dirty_green"],
+        ["rgb(238, 255, 65)", "yellow"],
+        ["rgb(174, 234, 0)", "green_yellow_2"],
+        ["rgb(255, 255, 0)", "yellow_green"],
+        ["rgb(255, 214, 0)", "dirty_yellow"],
+        ["rgb(255, 215, 65)", "dirty_yellow_1"],
+        ["rgb(255, 171, 0)", "dark_yellow"],
+        ["rgb(255, 109, 0)", "orange"],
+        ["rgb(255, 110, 65)", "dark_orange"],
+        ["rgb(221, 44, 0)", "dark_orange_1"]
+    ]
+}
+
+        

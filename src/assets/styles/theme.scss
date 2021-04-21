@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* SCSS Document */
+
+@import 'style'; //import of globale style attributes
+@import 'transitions'; //import of transitions
+
+@import './theme/darkMode'; //import of dark mode (default)
+@import './theme/lightMode'; //import of light mode
+@import './theme/accentColors'; //import of accentColors
+@import './theme/scrollbar'; //import of costume style
+
+// static Colors
+:root {
+    --white: #ffffff;
+    --red: #ff0000;
+    --light_red: #ff6666;
+    --dark_red: #cc0000;
+    --black: #000000;
+
+    --font: "Raleway", sans-serif;
+}

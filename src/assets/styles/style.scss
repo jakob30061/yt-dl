@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* SCSS Document */
+
+html {
+    scroll-behavior: smooth; // smooth scrolling
+}
+
+// includes margin, padding and border to width and height
+*, ::after, ::before {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg, #282828); //TODO:
+    color: var(--text, #ffffff);
+
+    //disable the ability to select static Text
+    -webkit-user-select: None;
+    user-select: None;
+
+    overflow-x: hidden;
+    margin: 0;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    text-align: center;
+}
