@@ -5,6 +5,8 @@
         <p class="tagHeader">{{ $t("message.fileName").toUpperCase() + ':' }}</p>
         <p class="file_element"></p>
 
+        <popover></popover>
+
         <p class="tagHeader">{{ $t("message.title").toUpperCase() + ':' }}</p>
         <p class="file_element"></p>
 
@@ -47,12 +49,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Popover from '@/components/Popover.vue'
 
 import '@/assets/libs/loading-bar.min.css'
 import '@/assets/libs/loading-bar.min.js'
 
 export default defineComponent({
   name: "Home",
+  components: { Popover },
 
   data() {
     return {
@@ -67,7 +71,7 @@ export default defineComponent({
 .mainDiv {
   margin-bottom: 25px;
 
-    div:first-of-type {
+    >div:first-of-type {
       background-color: rgb(64, 64, 64, 0.4);
       border-bottom-right-radius: 8px;
       border-bottom: 1.5px rgb(0, 0, 0, 0.25) solid;
@@ -75,7 +79,7 @@ export default defineComponent({
       padding: 20px 20px 0px 30px;
     }
     
-    div:last-of-type {
+    >div:last-of-type {
       padding: 10px 0px 0px 30px;
     }
 }
