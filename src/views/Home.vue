@@ -3,24 +3,26 @@
     <div class="row mainDiv">
       <div class="col-md-3">
         <p class="tagHeader">{{ $t("message.fileName").toUpperCase() + ':' }}</p>
-        <p class="file_element"></p>
-
-        <popover></popover>
+        <input class="file_element" :value="fileName">
 
         <p class="tagHeader">{{ $t("message.title").toUpperCase() + ':' }}</p>
-        <p class="file_element"></p>
+        <input class="file_element" :value="title">
 
         <p class="tagHeader">{{ $t("message.artist").toUpperCase() + ':' }}</p>
-        <p class="file_element"></p>
+        <input class="file_element" :value="artist">
 
         <p class="tagHeader">{{ $t("message.year").toUpperCase() + ':' }}</p>
-        <p class="file_element"></p>
+        <input class="file_element" :value="year">
 
         <p class="tagHeader">{{ $t("message.genre").toUpperCase() + ':' }}</p>
-        <p class="file_element"></p>
+        <input class="file_element" :value="genre">
 
         <p class="tagHeader">{{ $t("message.channel").toUpperCase() + ':' }}</p>
-        <p class="file_element"></p>
+        <input class="file_element" :value="channel">
+
+        <img id="file_channel_img" src="https://yt3.ggpht.com/a/AATXAJz1memzaKdtvRY4MNUDAXid9eo-7ye38M136_-n5Q=s88-c-k-c0xffffffff-no-rj-mo" alt="channel image"/>
+
+        <popover></popover>
       </div>
       
       <div class="col-md-9">
@@ -33,7 +35,7 @@
         <p>{{ file_name }}</p>
 
         <div style="width: auto; height: 50px;" id="progressbar" data-preset="energy" class="ldBar label-center"></div>
-        <p id="progressText">1MB von 3MB</p>
+        <p id="progressText">(1.02MB of 3.58MB)</p>
       </div>
 
       <div class="col-md-9" id="queue">
@@ -52,6 +54,7 @@ import { defineComponent } from 'vue'
 import Popover from '@/components/Popover.vue'
 
 import '@/assets/libs/loading-bar.min.css'
+import '@/assets/libs/bootstrap-grid.min.css'
 import '@/assets/libs/loading-bar.min.js'
 
 export default defineComponent({
@@ -61,7 +64,8 @@ export default defineComponent({
   data() {
     return {
       url: 'https://i.ytimg.com/vi/PRqiUgXHCWA/maxresdefault.jpg',
-      file_name: 'Coldplay x Porter Robinson x Krewella - Every Language is Alive (Kyante Wilson Mashup)'
+      file_name: 'Coldplay x Porter Robinson x Krewella - Every Language is Alive (Kyante Wilson Mashup)',
+      title: 'Name'
     }
   },
 });
@@ -92,13 +96,24 @@ export default defineComponent({
 }
 
 .file_element {
-  cursor: text;
+  background: none;
+  border: 0;
+  outline: none;
+
+  width: 100%;
+  text-align: center;
+  color: var(--text, #ffffff);
   border-bottom: 1px solid rgb(255, 255, 255, 0.3);
   padding-bottom: 5px;
   margin: 5px 0 35px 0;
 }
 
+#file_channel_img {
+    border-radius: 50%;
+    width: 3rem;
+}
 
+//-------------------------------------------------------
 #thumbnail {
   width: 94%;
   border-radius: 6px;
