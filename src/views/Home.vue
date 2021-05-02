@@ -5,14 +5,17 @@
         <p class="tagHeader">{{ $t("message.fileName").toUpperCase() + ':' }}</p>
         <input class="file_element" :value="fileName">
 
-        <p class="tagHeader">{{ $t("message.title").toUpperCase() + ':' }}</p>
-        <input class="file_element" :value="title">
+        <div style="position: relative">
+          <p class="tagHeader">{{ $t("message.title").toUpperCase() + ':' }}</p>
+          <input class="file_element" :value="title">
+          <popover :visible="true"></popover>
+        </div>
 
         <p class="tagHeader">{{ $t("message.artist").toUpperCase() + ':' }}</p>
         <input class="file_element" :value="artist">
 
         <p class="tagHeader">{{ $t("message.year").toUpperCase() + ':' }}</p>
-        <input class="file_element" :value="year">
+        <input class="file_element" type="number" :value="year">
 
         <p class="tagHeader">{{ $t("message.genre").toUpperCase() + ':' }}</p>
         <input class="file_element" :value="genre">
@@ -21,8 +24,6 @@
         <input class="file_element" :value="channel">
 
         <img id="file_channel_img" src="https://yt3.ggpht.com/a/AATXAJz1memzaKdtvRY4MNUDAXid9eo-7ye38M136_-n5Q=s88-c-k-c0xffffffff-no-rj-mo" alt="channel image"/>
-
-        <popover></popover>
       </div>
       
       <div class="col-md-9">
@@ -41,6 +42,7 @@
       <div class="col-md-9" id="queue">
         <div>
           <h4 style="text-align: center;" id="fullProgress">100/300</h4>
+          <img>
         </div>
       </div>
     </div>
@@ -56,6 +58,9 @@ import Popover from '@/components/Popover.vue'
 import '@/assets/libs/loading-bar.min.css'
 import '@/assets/libs/bootstrap-grid.min.css'
 import '@/assets/libs/loading-bar.min.js'
+
+
+const data: Array<Object> = [];
 
 export default defineComponent({
   name: "Home",
@@ -81,6 +86,8 @@ export default defineComponent({
       border-bottom: 1.5px rgb(0, 0, 0, 0.25) solid;
       border-right: 1.5px rgb(0, 0, 0, 0.25) solid;
       padding: 20px 20px 0px 30px;
+
+      position: relative;
     }
     
     >div:last-of-type {
@@ -111,6 +118,7 @@ export default defineComponent({
 #file_channel_img {
     border-radius: 50%;
     width: 3rem;
+    margin-bottom: 10px;
 }
 
 //-------------------------------------------------------
