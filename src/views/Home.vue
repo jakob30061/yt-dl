@@ -27,7 +27,18 @@
       </div>
       
       <div class="col-md-9">
-        <img id="thumbnail" :src="url" alt="Video thumbnail"/>
+        <img v-if="!showVideo" @click="showVideo = !showVideo" id="thumbnail" :src="url" alt="Video thumbnail"/>
+        <iframe
+          v-else
+          @click="showVideo = !showVideo"
+
+          id="videoPlayer"
+          src="https://www.youtube-nocookie.com/embed/PRqiUgXHCWA" 
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; gyroscope; picture-in-picture" 
+          allowfullscreen="true">
+        </iframe>
       </div>
     </div>
 
@@ -70,7 +81,8 @@ export default defineComponent({
     return {
       url: 'https://i.ytimg.com/vi/PRqiUgXHCWA/maxresdefault.jpg',
       file_name: 'Coldplay x Porter Robinson x Krewella - Every Language is Alive (Kyante Wilson Mashup)',
-      title: 'Name'
+      title: 'Name',
+      showVideo: false
     }
   },
 });
@@ -127,8 +139,12 @@ export default defineComponent({
   border-radius: 6px;
   border: 1.5px rgb(255, 255, 255, 0.2) solid;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
-  
-  transition: box-shadow 0.2s linear 0.3s;
+}
+
+#videoPlayer {
+  width: 94%;
+  height: 99%;
+  border-radius: 6px;
 }
 
 //-------------------------------------------------------

@@ -1,3 +1,8 @@
 # YouTube-Downloader (standalone version)
- 
-<img src="./ytdl UI.png">
+
+## Electron Application for downloading Videos and Audio from  YouTube in various formats
+
+<img src="./.github/ytdl UI.png">
+
+<!-- ---------------------------------------------- -->
+<link rel="stylesheet" type="text/css" href="./style.css">
