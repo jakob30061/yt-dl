@@ -59,6 +59,16 @@
     </div>
 
     <img id="bg-cover" :style="{ backgroundImage: `url(${url})` }">
+
+    <div id="overlay">
+      <div id="setVideo" :class="{ expanded }">
+        <div id="pasteURL">
+          <input placeholder="paste YouTube URL or ID" v-model="url" @input="fetchData">
+        </div>
+        <div id="fetchVideo">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -70,8 +80,9 @@ import '@/assets/libs/loading-bar.min.css'
 import '@/assets/libs/bootstrap-grid.min.css'
 import '@/assets/libs/loading-bar.min.js'
 
+import axios from 'axios';
 
-const data: Array<Object> = [];
+import { ytAPI } from '../../keys'
 
 export default defineComponent({
   name: "Home",
@@ -79,12 +90,29 @@ export default defineComponent({
 
   data() {
     return {
-      url: 'https://i.ytimg.com/vi/PRqiUgXHCWA/maxresdefault.jpg',
-      file_name: 'Coldplay x Porter Robinson x Krewella - Every Language is Alive (Kyante Wilson Mashup)',
-      title: 'Name',
-      showVideo: false
+      url: 'https://www.youtube.com/watch?v=PRqiUgXHCWA',
+      showVideo: false,
+      expanded: false
     }
   },
+
+  methods: {
+    async fetchData() {
+      try {
+        if(this.url.includes("watch?v=")){
+          this.expanded = true;
+
+          const id = this.url.slice(this.url.indexOf("watch?v=") + 8, this.url.indexOf("watch?v=") + 19);
+
+          const videoAPI = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${ytAPI}`;
+          const data = await (await axios.get(videoAPI)).data.items[0].snippet;
+          console.log(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 });
 </script>
 
@@ -194,5 +222,55 @@ export default defineComponent({
   filter: blur(5px) brightness(0.75);
   transform: scale(1.1);
   z-index: -1;
+}
+
+//------------------------------------------------
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0 , 0, 0.8);
+
+    #setVideo {
+      width: 40%;
+      height: 50px;
+      background-color: var(--bg);
+
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: height 0.22s ease-in-out;
+
+        &.expanded {
+          height: 50vh;
+        }
+    }
+
+    #pasteURL input {
+      width: 80%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      background: none;
+      border: 0;
+      outline: none;
+
+      text-align: center;
+      color: var(--text, #ffffff);
+      border-bottom: 1px solid rgb(255, 255, 255, 0.3);
+      padding-bottom: 8px;
+      margin: 10px 0 35px 0;
+    }
+
+    #fetchVideo {
+      height: 100%;
+    }
 }
 </style>

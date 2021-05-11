@@ -4,7 +4,7 @@ import App from './App.vue'
 //Plugins
 import router from './router';
 import store from './store';
-import i18n from './_locales'
+import i18n from './_locales';
 
 import '@/assets/styles/theme.scss'; //own theme and stylex
 
