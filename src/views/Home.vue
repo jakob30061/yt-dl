@@ -59,7 +59,8 @@
     </div>
 
     <img id="bg-cover" :style="{ backgroundImage: `url(${url})` }">
-    <url-overlay style="display: none"></url-overlay>
+
+    <url-overlay @fetchedData="setData"/>
     <app-menu id="menu"></app-menu>
   </div>
 </template>
@@ -67,14 +68,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+//components
 import Popover from '@/components/Popover.vue'
 import UrlOverlay from '@/components/Url-overlay.vue'
 import AppMenu from '@/components/Menu.vue'
 
+//libs
 import '@/assets/libs/loading-bar.min.css'
 import '@/assets/libs/bootstrap-grid.min.css'
 import '@/assets/libs/loading-bar.min.js'
 
+//interfaces
+import State from '../assets/database/state'
 
 export default defineComponent({
   name: "Home",
@@ -83,8 +88,15 @@ export default defineComponent({
   data() {
     return {
       showVideo: false,
+      data: new Object()
     }
   },
+
+  methods: {
+    setData(videoData: Object) {
+      this.data = new State();
+    }
+  }
 });
 </script>
 

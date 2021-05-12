@@ -21,6 +21,7 @@ import { ytAPI } from '../../keys'
 
 export default {
   name: "URL-Overlay",
+  emits: ['fetchedData'],
 
   data() {
     return {
@@ -40,6 +41,7 @@ export default {
           const videoAPI = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${ytAPI}`;
           const data = await (await axios.get(videoAPI)).data.items[0].snippet;
           console.log(data);
+          this.$emit('fetchedData', data);
         }
       } catch (error) {
         console.log(error);
