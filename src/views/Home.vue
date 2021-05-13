@@ -33,7 +33,7 @@
           @click="showVideo = !showVideo"
 
           id="videoPlayer"
-          src="https://www.youtube-nocookie.com/embed/PRqiUgXHCWA" 
+          :src="'https://www.youtube-nocookie.com/embed/' + videoData.staticData.id"
           title="YouTube video player" 
           frameborder="0" 
           allow="accelerometer; gyroscope; picture-in-picture" 
@@ -60,7 +60,7 @@
 
     <img id="bg-cover" :style="{ backgroundImage: `url(${videoData.staticData.thumbnails.maxres.url})` }">
 
-    <url-overlay @fetchedData="setData"/>
+    <url-overlay @fetchedData="setData" v-if="showPasteUrl"/>
     <app-menu id="menu"></app-menu>
   </div>
 </template>
@@ -87,6 +87,8 @@ export default defineComponent({
   data() {
     return {
       showVideo: false,
+      showPasteUrl: true,
+
       videoData: {
         downloadData: {
           file_name: undefined,
@@ -113,6 +115,7 @@ export default defineComponent({
     setData(data: any) {
       console.log(data);
       this.videoData = data;
+      this.showPasteUrl = false;
     }
   },
 });
