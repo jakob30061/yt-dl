@@ -3,31 +3,31 @@
     <div class="row mainDiv">
       <div class="col-md-3">
         <p class="tagHeader">{{ $t("message.fileName").toUpperCase() + ':' }}</p>
-        <input class="file_element" :value="fileName">
+        <input class="file_element" :value="videoData.downloadData.file_name">
 
         <div style="position: relative">
           <p class="tagHeader">{{ $t("message.title").toUpperCase() + ':' }}</p>
-          <input class="file_element" :value="title">
+          <input class="file_element" :value="videoData.downloadData.title">
           <popover :visible="true"></popover>
         </div>
 
         <p class="tagHeader">{{ $t("message.artist").toUpperCase() + ':' }}</p>
-        <input class="file_element" :value="artist">
+        <input class="file_element" :value="videoData.downloadData.artist">
 
         <p class="tagHeader">{{ $t("message.year").toUpperCase() + ':' }}</p>
-        <input class="file_element" type="number" :value="year">
+        <input class="file_element" type="number" :value="videoData.downloadData.year">
 
         <p class="tagHeader">{{ $t("message.genre").toUpperCase() + ':' }}</p>
-        <input class="file_element" :value="genre">
+        <input class="file_element" :value="videoData.downloadData.genre">
 
         <p class="tagHeader">{{ $t("message.channel").toUpperCase() + ':' }}</p>
-        <input class="file_element" :value="channel">
+        <input class="file_element" :value="videoData.staticData.channelData.channel_name">
 
-        <img id="file_channel_img" src="https://yt3.ggpht.com/a/AATXAJz1memzaKdtvRY4MNUDAXid9eo-7ye38M136_-n5Q=s88-c-k-c0xffffffff-no-rj-mo" alt="channel image"/>
+        <img id="file_channel_img" :src="videoData.staticData.channelData.channel_img" alt="channel image"/>
       </div>
       
       <div class="col-md-9">
-        <img v-if="!showVideo" @click="showVideo = !showVideo" id="thumbnail" :src="url" alt="Video thumbnail"/>
+        <img v-if="!showVideo" @click="showVideo = !showVideo" id="thumbnail" :src="videoData.staticData.thumbnails.maxres.url" alt="Video thumbnail"/>
         <iframe
           v-else
           @click="showVideo = !showVideo"
@@ -44,7 +44,7 @@
 
     <div class="row">
       <div class="col-md-3" id="progressDiv">
-        <p>{{ file_name }}</p>
+        <p>{{ videoData.downloadData.file_name }}</p>
 
         <div style="width: auto; height: 50px;" id="progressbar" data-preset="energy" class="ldBar label-center"></div>
         <p id="progressText">(1.02MB of 3.58MB)</p>
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <img id="bg-cover" :style="{ backgroundImage: `url(${url})` }">
+    <img id="bg-cover" :style="{ backgroundImage: `url(${videoData.staticData.thumbnails.maxres.url})` }">
 
     <url-overlay @fetchedData="setData"/>
     <app-menu id="menu"></app-menu>
@@ -78,8 +78,7 @@ import '@/assets/libs/loading-bar.min.css'
 import '@/assets/libs/bootstrap-grid.min.css'
 import '@/assets/libs/loading-bar.min.js'
 
-//interfaces
-import State from '../assets/database/state'
+import bgImage from '@/assets/default-image.jpg';
 
 export default defineComponent({
   name: "Home",
@@ -88,15 +87,34 @@ export default defineComponent({
   data() {
     return {
       showVideo: false,
-      data: new Object()
+      videoData: {
+        downloadData: {
+          file_name: undefined,
+          artist: undefined,
+          title: undefined,
+
+          year: undefined,
+        },
+        staticData: {
+          channelData: {
+            channel_name: undefined,
+          },
+          thumbnails: {
+            maxres: {
+              url: bgImage
+            }
+          }
+        }
+      }
     }
   },
 
   methods: {
-    setData(videoData: Object) {
-      this.data = new State();
+    setData(data: any) {
+      console.log(data);
+      this.videoData = data;
     }
-  }
+  },
 });
 </script>
 

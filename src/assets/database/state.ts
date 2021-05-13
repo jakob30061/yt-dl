@@ -1,16 +1,17 @@
-export default interface State {
+export interface State {
   downloadData: {
     file_name: string,
     artist: string,
     title: string,
     year: number,
-    genre: string,
+    genre?: string,
     format: { audio: boolean, video: boolean },
     codec: string,
-    codecQuality: number,
+    codecQuality: number | string,
     cover: string,
     In: number,
     Out: number,
+    lyrics: string
   },
 
   staticData: {
@@ -19,6 +20,7 @@ export default interface State {
     id: string,
     duration: string,
     durationInSek: number,
+    resolution: 'string',
     
     channelData: {
       channel_img: string,
@@ -29,10 +31,10 @@ export default interface State {
   },
 
   processingData: {
-    dateAdded: string,
-    metadata: {
-      brackets: Array<string>,
-      slicedTitle: Array<string>
+    dateAdded: Date,
+    metadata?: {
+      brackets?: Array<string>,
+      slicedTitle?: Array<string>
     }
   }
 }

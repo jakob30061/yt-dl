@@ -4,7 +4,7 @@
       <div id="pasteURL">
         <input placeholder="paste YouTube URL or ID" v-model="url" @input="fetchData">
       </div>
-      <div id="fetchVideo">
+      <div id="fetchVideo" v-show="expanded">
         <div class="loading-cricle">
           <svg viewBox="25 25 50 50">
             <circle cx="50" cy="50" r="20"></circle>
@@ -15,9 +15,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from 'axios';
 import { ytAPI } from '../../keys'
+
+//interfaces
+import { State } from '../assets/database/state'
 
 export default {
   name: "URL-Overlay",
@@ -25,25 +28,70 @@ export default {
 
   data() {
     return {
-      url: 'https://www.youtube.com/watch?v=PRqiUgXHCWA',
-      expanded: true
+      url: '',
+      expanded: false
     }
   },
 
   methods: {
     async fetchData() {
       try {
+        this.expanded = true;
+
+        let id: string; 
         if(this.url.includes("watch?v=")){
-          this.expanded = true;
-
-          const id = this.url.slice(this.url.indexOf("watch?v=") + 8, this.url.indexOf("watch?v=") + 19);
-
-          const videoAPI = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${ytAPI}`;
-          const data = await (await axios.get(videoAPI)).data.items[0].snippet;
-          console.log(data);
-          this.$emit('fetchedData', data);
+          id = this.url.slice(this.url.indexOf("watch?v=") + 8, this.url.indexOf("watch?v=") + 19);
+        }else {
+          id = this.url;
         }
+
+        const videoAPI = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${ytAPI}`;
+        const videoData = await (await axios.get(videoAPI)).data.items[0];
+        const channelAPI = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData.snippet.channelId}&key=${ytAPI}`;
+        const channelData = await (await axios.get(channelAPI)).data.items[0];
+        const arr = videoData.snippet.title.split(" - ") as Array<string>;
+        
+        const video:State = {
+          downloadData: {
+            file_name: videoData.snippet.title,
+            artist: (arr[0] != undefined ? arr[0] : videoData.snippet.title),
+            title: (arr[1] != undefined  ? arr[1] : videoData.snippet.title),
+
+            year: videoData.snippet.publishedAt.slice(0, 4),
+            format: {
+              audio: true,
+              video: false
+            },
+            codec: '_default',
+            codecQuality: '_default',
+            cover: '_default',
+            In: 0,
+            Out: 300,
+            lyrics: ''
+          },
+          staticData: {
+            url: `https://www.youtube.com/watch?v=${videoData.id}`,
+            uploadInfo: `${videoData.snippet.publishedAt.slice(8, 10)}.${videoData.snippet.publishedAt.slice(5, 7)}.${videoData.snippet.publishedAt.slice(0, 4)}`,
+            id: videoData.id,
+            duration: '',
+            durationInSek: 725,
+            resolution: videoData.contentDetails.definition,
+            
+            channelData: {
+              channel_img: channelData.snippet.thumbnails.default.url,
+              channel_link: `https://www.youtube.com/channel/${ channelData.id}`,
+              channel_name: channelData.snippet.title,
+            },
+            thumbnails: videoData.snippet.thumbnails
+          },
+          processingData: {
+            dateAdded: new Date()
+          }
+        }
+
+        this.$emit('fetchedData', video);
       } catch (error) {
+        this.expanded = false;
         console.log(error);
       }
     }
