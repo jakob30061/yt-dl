@@ -4,10 +4,7 @@
 @import 'style'; //import of globale style attributes
 @import 'transitions'; //import of transitions
 
-@import './theme/darkMode'; //import of dark mode (default)
-@import './theme/lightMode'; //import of light mode
-@import './theme/accentColors'; //import of accentColors
-@import './theme/scrollbar'; //import of costume style
+@import 'mixins';
 
 // static Colors
 :root {
@@ -18,4 +15,15 @@
     --black: #000000;
 
     --font: "Raleway", sans-serif;
+
+    --nav-size: 60px;
+    --border-radius: 8px;
+    --speed: 500ms;
+}
+
+* {
+    --bg: #282828;
+    --text: var(--white);
+
+    --border: 204, 204, 204;
 }

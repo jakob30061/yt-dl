@@ -100,6 +100,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/mixins';
+
 #overlay {
   position: fixed;
   top: 0;
@@ -133,15 +135,8 @@ export default {
       margin: 10px 0 35px 0;
 
       input {
+        @include input;
         width: 80%;
-
-        background: none;
-        border: 0;
-        outline: none;
-
-        text-align: center;
-        color: var(--text, #ffffff);
-        border-bottom: 1px solid rgb(255, 255, 255, 0.3);
         padding-bottom: 8px;
       }
     }

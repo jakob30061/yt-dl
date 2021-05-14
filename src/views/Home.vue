@@ -3,12 +3,12 @@
     <div class="row mainDiv">
       <div class="col-md-3">
         <p class="tagHeader">{{ $t("message.fileName").toUpperCase() + ':' }}</p>
-        <input class="file_element" :value="videoData.downloadData.file_name">
+        <input class="file_element" :value="file_name">
 
         <div style="position: relative">
           <p class="tagHeader">{{ $t("message.title").toUpperCase() + ':' }}</p>
           <input class="file_element" :value="videoData.downloadData.title">
-          <popover :visible="true"></popover>
+          <popover :visible="false"></popover>
         </div>
 
         <p class="tagHeader">{{ $t("message.artist").toUpperCase() + ':' }}</p>
@@ -60,8 +60,8 @@
 
     <img id="bg-cover" :style="{ backgroundImage: `url(${videoData.staticData.thumbnails.maxres.url})` }">
 
-    <url-overlay @fetchedData="setData" v-if="showPasteUrl"/>
-    <app-menu id="menu"></app-menu>
+    <UrlOverlay @fetchedData="setData" v-if="showPasteUrl"/>
+    <AppMenu id="menu"></AppMenu>
   </div>
 </template>
 
@@ -71,12 +71,14 @@ import { defineComponent } from 'vue'
 //components
 import Popover from '@/components/Popover.vue'
 import UrlOverlay from '@/components/Url-overlay.vue'
-import AppMenu from '@/components/Menu.vue'
+import AppMenu from '@/components/menu/Menu.vue'
 
 //libs
 import '@/assets/libs/loading-bar.min.css'
 import '@/assets/libs/bootstrap-grid.min.css'
 import '@/assets/libs/loading-bar.min.js'
+
+import sanitize from 'sanitize-filename' // removing directory paths and invalid characters from a filename
 
 import bgImage from '@/assets/default-image.jpg';
 
@@ -111,6 +113,12 @@ export default defineComponent({
     }
   },
 
+  computed: {
+    file_name() {
+      return sanitize(`${this.videoData.downloadData.artist} - ${this.videoData.downloadData.title}`)
+    }
+  },
+
   methods: {
     setData(data: any) {
       console.log(data);
@@ -122,6 +130,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/mixins';
+
 .mainDiv {
   margin-bottom: 25px;
 
@@ -148,15 +158,8 @@ export default defineComponent({
 }
 
 .file_element {
-  background: none;
-  border: 0;
-  outline: none;
-
+  @include input;
   width: 100%;
-  text-align: center;
-  color: var(--text, #ffffff);
-  border-bottom: 1px solid rgb(255, 255, 255, 0.3);
-  padding-bottom: 5px;
   margin: 5px 0 35px 0;
 }
 

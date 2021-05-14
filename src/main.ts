@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router';
 import i18n from './_locales';
 
-import '@/assets/styles/theme.scss'; //own theme and stylex
+import '@/assets/styles/theme.scss'; //own theme and styles
 
 // -----------------------------------------
 const app = createApp(App)
