@@ -36,7 +36,7 @@ import DropdownItem from './DropdownItem.vue'
 
 //icons
 import ChevronIcon from '@/assets/icons/chevron-forward.svg'
-import OptionsIcon from '@/assets/icons/options.svg'
+import OptionsIcon from '@/assets/icons/settings.svg'
 
 export default defineComponent({
   name: 'AppMenu',
@@ -77,7 +77,7 @@ export default defineComponent({
   max-height: 50vh;
   transform: translateX(-45%);
   background-color: var(--bg);
-  border: 1px rgba(var(--border), 0.4) solid;
+  border: 1px rgba(var(--border), 0.3) solid;
   border-radius: var(--border-radius);
   padding: 1rem;
   overflow: hidden;
