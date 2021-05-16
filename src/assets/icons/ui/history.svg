@@ -1,0 +1,7 @@
+<svg viewBox='0 0 1000 1000' xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:1.5;">
+    <title>History</title>
+    <path id="Zeiger" d="M487.111,252.737l-0,289.765l109.296,83.273" style="fill:none;stroke:#fff;stroke-width:54.17px;"/>
+    <path id="Kreis" d="M20.282,353.796l133.205,138.923l138.923,-133.204" style="fill:none;stroke:#fff;stroke-width:54.17px;stroke-miterlimit:10;"/>
+    <path d="M153.487,492.719c1.235,-58.769 17.399,-116.259 46.971,-167.061c96.221,-165.3 308.544,-221.382 473.844,-125.16c165.299,96.222 221.382,308.544 125.16,473.844c-88.069,151.295 -275.144,213.15 -436.044,144.175c160.9,68.975 347.975,7.12 436.044,-144.175c96.222,-165.3 40.139,-377.622 -125.16,-473.844c-165.3,-96.222 -377.623,-40.14 -473.844,125.16c-29.572,50.802 -45.736,108.292 -46.971,167.061Z" style="fill:none;stroke:#fff;stroke-width:54.17px;stroke-linejoin:bevel;"/>
+    <path id="Kreis--gestrichelt-" serif:id="Kreis (gestrichelt)" d="M159.29,560.811c19.563,111.349 92.018,206.119 194.118,253.903c-102.1,-47.784 -174.555,-142.554 -194.118,-253.903Z" style="fill:none;stroke:#fff;stroke-width:50px;stroke-dasharray:50,75,0,0;"/>
+</svg>

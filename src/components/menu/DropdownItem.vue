@@ -49,7 +49,7 @@ export default {
     }
 
     svg  {
-      fill: var(--text-color);
+      fill: var(--text);
       width: 20px;
       height: 20px;
     }

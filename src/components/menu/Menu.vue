@@ -7,24 +7,48 @@
     </div>
 
     <div id="dropdown">
-      <div id="menu">
-        <DropdownItem>
-          <template v-slot:leftIcon><OptionsIcon/></template> 
-          Queue
-          <template v-slot:rightIcon><ChevronIcon/></template> 
-        </DropdownItem>
-        <DropdownItem>
-          <template v-slot:leftIcon><OptionsIcon/></template> 
-          History
-          <template v-slot:rightIcon><ChevronIcon/></template> 
-        </DropdownItem>
-        <DropdownItem>
-          <template v-slot:leftIcon><OptionsIcon/></template> 
-          Settings
-          <template v-slot:rightIcon><ChevronIcon/></template> 
-        </DropdownItem>
+      <transition>
+        <div id="menu">
+          <DropdownItem>
+            <template v-slot:leftIcon><OptionsIcon/></template> 
+            Queue
+            <template v-slot:rightIcon><ChevronIcon/></template> 
+          </DropdownItem>
+          <DropdownItem>
+            <template v-slot:leftIcon><HistoryIcon/></template> 
+            History
+            <template v-slot:rightIcon><ChevronIcon/></template> 
+          </DropdownItem>
+          <DropdownItem>
+            <template v-slot:leftIcon><OptionsIcon/></template> 
+            Settings
+            <template v-slot:rightIcon><ChevronIcon/></template> 
+          </DropdownItem>
+        </div>
+      </transition>
 
-      </div>
+      <transition>
+        <div id="queue">
+          <DropdownItem>
+            <template v-slot:leftIcon><ArrowIcon/></template>
+            <h3>Queue</h3>
+          </DropdownItem>
+        </div>
+      </transition>
+
+      <transition>
+        <div id="history">
+        </div>
+      </transition>
+
+      <transition>
+        <div id="settings">
+          <DropdownItem>Quality</DropdownItem>
+          <DropdownItem>Theme</DropdownItem>
+          <DropdownItem>Genres Library</DropdownItem>
+          <DropdownItem>About</DropdownItem>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -35,12 +59,14 @@ import { defineComponent } from 'vue'
 import DropdownItem from './DropdownItem.vue'
 
 //icons
-import ChevronIcon from '@/assets/icons/chevron-forward.svg'
-import OptionsIcon from '@/assets/icons/settings.svg'
+import ChevronIcon from '@/assets/icons/ui/chevron-forward.svg'
+import ArrowIcon from '@/assets/icons/ui/arrow-back.svg'
+import OptionsIcon from '@/assets/icons/ui/settings.svg'
+import HistoryIcon from '@/assets/icons/ui/history.svg'
 
 export default defineComponent({
   name: 'AppMenu',
-  components: { DropdownItem, ChevronIcon, OptionsIcon },
+  components: { DropdownItem, ChevronIcon, ArrowIcon, OptionsIcon, HistoryIcon },
 });
 </script>
 
@@ -74,8 +100,7 @@ export default defineComponent({
 /* Dropdown Menu */
 #dropdown {
   width: 300px;
-  max-height: 50vh;
-  transform: translateX(-45%);
+  max-height: 80vh;
   background-color: var(--bg);
   border: 1px rgba(var(--border), 0.3) solid;
   border-radius: var(--border-radius);
