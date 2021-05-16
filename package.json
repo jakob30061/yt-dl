@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview",
-    "tauri": "tauri"
+    "tauri dev": "tauri dev"
   },
   "dependencies": {
     "@tauri-apps/api": "*",

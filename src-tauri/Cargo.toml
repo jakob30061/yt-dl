@@ -1,8 +1,9 @@
 [package]
 name = "app"
 version = "0.1.0"
+authors = ["jakob30061"]
 description = "A YouTube Downloader build with Vue.js and Rust Tauri"
-authors = ["you"]
+readme = "README.md"
 license = ""
 repository = ""
 default-run = "app"
