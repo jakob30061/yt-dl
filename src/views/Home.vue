@@ -37,7 +37,7 @@
           title="YouTube video player" 
           frameborder="0" 
           allow="accelerometer; gyroscope; picture-in-picture" 
-          allowfullscreen="true">
+          :allowfullscreen="true">
         </iframe>
       </div>
     </div>

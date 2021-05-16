@@ -14,7 +14,7 @@ export default defineComponent({
 
   data() {
     return {
-      animationType: new String(),
+      animationType: 'slide-right',
     }
   },
 

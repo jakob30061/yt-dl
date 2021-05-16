@@ -11,7 +11,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: "Popover",
   emits: ['changedVisibility'],
 
@@ -19,7 +21,7 @@ export default {
     visible: { type: Boolean, required: true }
   }
 
-};
+});
 </script>
 
 <style lang="scss" scoped>

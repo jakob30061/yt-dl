@@ -16,13 +16,17 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 import axios from 'axios';
+import { useOnline } from '@vueuse/core'
+
 import { ytAPI } from '../../keys'
 
 //interfaces
 import { State } from '../assets/database/state'
 
-export default {
+export default defineComponent({
   name: "URL-Overlay",
   emits: ['fetchedData'],
 
@@ -96,7 +100,7 @@ export default {
       }
     }
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>
