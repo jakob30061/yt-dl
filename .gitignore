@@ -4,3 +4,4 @@ dist
 dist-ssr
 *.local
 keys.ts
+src-tauri/target
