@@ -3,43 +3,43 @@
 
 //Slide vertically transition => used for dropdowns (title, artist, genre, etc.)
 .slide-vertical-enter-active {
-    overflow-y: hidden !important;
-    transform-origin: top !important;
-    animation: slide-vertical 0.22s;
+  overflow-y: hidden !important;
+  transform-origin: top !important;
+  animation: slide-vertical 0.22s;
 }
 
 .slide-vertical-leave-active {
-    overflow-y: hidden !important;
-    transform-origin: top !important;
-    animation: slide-vertical 0.22s reverse;
+  overflow-y: hidden !important;
+  transform-origin: top !important;
+  animation: slide-vertical 0.22s reverse;
 }
 
 @keyframes slide-vertical {
-    0% {
-        transform: scaleY(0) translateY(-15%);
-    }
-    100% {
-        transform: scaleY(1) translateY(0px);
-    }
+  0% {
+    transform: scaleY(0) translateY(-15%);
   }
+  100% {
+    transform: scaleY(1) translateY(0px);
+  }
+}
 
 //----------------------------------------------------------
 // Fade transition
 .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .fade-enter-from, .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
 
 //----------------------------------------------------------
 //Fade translate transition => 
 .fade-translate-enter-active, .fade-translate-leave-active {
-    transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .fade-translate-enter-from, .fade-translate-leave-to {
-    opacity: 0;
-    transform: translateY(10px);
+  opacity: 0;
+  transform: translateY(10px);
 }

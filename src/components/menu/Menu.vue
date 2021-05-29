@@ -1,25 +1,25 @@
 <template>
   <div>
-    <div id="item-group">
+    <div id="item-group" @click="menuScreen = 'menu'" v-show="menuScreen === undefined">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
     </div>
 
-    <div id="dropdown">
+    <div id="dropdown" v-show="menuScreen !== undefined">
       <transition>
-        <div id="menu">
-          <DropdownItem>
+        <div id="menu" v-show="menuScreen === 'menu'">
+          <DropdownItem @click="menuScreen = 'queue'">
             <template v-slot:leftIcon><OptionsIcon/></template> 
             Queue
             <template v-slot:rightIcon><ChevronIcon/></template> 
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem @click="menuScreen = 'history'">
             <template v-slot:leftIcon><HistoryIcon/></template> 
             History
             <template v-slot:rightIcon><ChevronIcon/></template> 
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem @click="menuScreen = 'settings'">
             <template v-slot:leftIcon><OptionsIcon/></template> 
             Settings
             <template v-slot:rightIcon><ChevronIcon/></template> 
@@ -28,8 +28,8 @@
       </transition>
 
       <transition>
-        <div id="queue">
-          <DropdownItem>
+        <div id="queue" v-if="menuScreen === 'queue'">
+          <DropdownItem @click="menuScreen = 'menu'">
             <template v-slot:leftIcon><ArrowIcon/></template>
             <h3>Queue</h3>
           </DropdownItem>
@@ -37,12 +37,20 @@
       </transition>
 
       <transition>
-        <div id="history">
+        <div id="history" v-if="menuScreen === 'history'">
+          <DropdownItem @click="menuScreen = 'menu'">
+            <template v-slot:leftIcon><ArrowIcon/></template>
+            <h3>History</h3>
+          </DropdownItem>
         </div>
       </transition>
 
       <transition>
-        <div id="settings">
+        <div id="settings" v-if="menuScreen === 'settings'">
+          <DropdownItem @click="menuScreen = 'menu'">
+            <template v-slot:leftIcon><ArrowIcon/></template>
+            <h3>Settings</h3>
+          </DropdownItem>
           <DropdownItem>Quality</DropdownItem>
           <DropdownItem>Theme</DropdownItem>
           <DropdownItem>Genres Library</DropdownItem>
@@ -67,6 +75,12 @@ import HistoryIcon from '@/assets/icons/ui/history.svg'
 export default defineComponent({
   name: 'AppMenu',
   components: { DropdownItem, ChevronIcon, ArrowIcon, OptionsIcon, HistoryIcon },
+
+  data() {
+    return {
+      menuScreen: undefined as String | undefined
+    }
+  },
 });
 </script>
 
@@ -81,7 +95,6 @@ export default defineComponent({
 
 #item-group {
   cursor: pointer;
-  display: none;
 
   &:hover, 
   &:focus {
@@ -111,5 +124,42 @@ export default defineComponent({
     #menu {
       width: 100%;
     }
+}
+
+.slide-left-enter-active, .slide-left-leave-active,
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: all 0.6s ease-out;
+}
+
+.slide-left-enter-to {
+  position: absolute;
+  transform: translateX(-110%);
+}
+.slide-left-enter-from {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+.slide-left-leave-to {
+  position: absolute;
+  right: -100%;
+}
+.slide-left-leave-from {
+  transform: translateX(-110%);
+  transition: all var(--speed) ease;
+}
+
+//Slide right
+.slide-right-enter-to {
+  position: absolute;
+  transform: translateX(110%);
+}
+.slide-right-enter-from {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+
+.slide-right-leave-to {
+  transform: translateX(110%);
+  transition: all var(--speed) ease;
 }
 </style>

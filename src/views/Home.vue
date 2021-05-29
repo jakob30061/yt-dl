@@ -60,7 +60,7 @@
 
     <img id="bg-cover" :style="{ backgroundImage: `url(${videoData.staticData.thumbnails.maxres.url})` }">
 
-    <UrlOverlay @fetchedData="setData" v-if="showPasteUrl"/>
+    <UrlOverlay @fetchedData="setData"/>
     <AppMenu id="menu"></AppMenu>
   </div>
 </template>

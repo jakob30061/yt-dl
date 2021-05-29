@@ -4,6 +4,7 @@
       <div id="pasteURL">
         <input placeholder="paste YouTube URL or ID" v-model="url" @input="fetchData" v-focus>
       </div>
+      
       <div id="fetchVideo" v-show="expanded">
         <div class="loading-cricle">
           <svg viewBox="25 25 50 50">
