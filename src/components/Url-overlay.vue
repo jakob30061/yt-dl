@@ -1,17 +1,28 @@
 <template>
-  <div id="overlay">
-    <div id="setVideo" :class="{ expanded }">
-      <div id="pasteURL">
-        <input placeholder="paste YouTube URL or ID" v-model="url" @input="fetchData" v-focus>
-      </div>
-      
-      <div id="fetchVideo" v-show="expanded">
-        <div class="loading-cricle">
-          <svg viewBox="25 25 50 50">
-            <circle cx="50" cy="50" r="20"></circle>
-          </svg>
+  <div>
+    <transition name="fade">
+    <div id="overlay" v-show="!hideOverlay">
+      <div id="setVideo" :class="{ expanded }">
+        <div id="pasteURL">
+          <input placeholder="paste YouTube URL or ID" v-model="url" @input="fetchData" v-focus>
+        </div>
+        
+        <div id="fetchVideo" v-show="expanded">
+          <div class="loading-cricle">
+            <svg viewBox="25 25 50 50">
+              <circle cx="50" cy="50" r="20"></circle>
+            </svg>
+          </div>
+          <div id="chevronMain" @click="expanded = false; url = ''">
+            <ChevronIcon v-show="expanded"/>
+          </div>
         </div>
       </div>
+    </div>
+    </transition>
+      
+    <div id="invisibleSearchbar" v-show="hideOverlay" @mouseover="showSearchbar">
+
     </div>
   </div>
 </template>
@@ -22,6 +33,9 @@ import { defineComponent } from 'vue'
 import axios from 'axios';
 import { useOnline } from '@vueuse/core'
 
+//icons
+import ChevronIcon from '@/assets/icons/ui/chevron-forward.svg'
+
 import { ytAPI } from '../../keys'
 
 //interfaces
@@ -29,12 +43,14 @@ import { State } from '../assets/database/state'
 
 export default defineComponent({
   name: "URL-Overlay",
+  components: { ChevronIcon },
   emits: ['fetchedData'],
 
   data() {
     return {
       url: '',
-      expanded: false
+      expanded: false,
+      hideOverlay: false
     }
   },
 
@@ -94,11 +110,16 @@ export default defineComponent({
           }
         }
 
+        this.hideOverlay = true;
         this.$emit('fetchedData', video);
       } catch (error) {
         this.expanded = false;
         console.log(error);
       }
+    },
+
+    showSearchbar() {
+      this.hideOverlay = false;
     }
   }
 });
@@ -154,6 +175,27 @@ export default defineComponent({
     }
 }
 
+#chevronMain {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+    &:hover svg{
+      transform: translateY(-4px) rotate(-90deg);
+    }
+
+    svg {
+      color: var(--text);
+      height: 24px;
+      transform: rotate(-90deg);
+      transition: transform 0.22s ease-in-out;
+    }
+}
+
 //-------------------------------------------------------
 .loading-cricle {
   svg {
@@ -191,5 +233,16 @@ export default defineComponent({
   100% {
     stroke-dashoffset: -125px;
   }
+}
+
+//-----------------------------------------
+#invisibleSearchbar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 20%;
+  height: 25px;
 }
 </style>
