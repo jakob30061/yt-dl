@@ -4,10 +4,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "tauri dev": "tauri dev"
   },
   "dependencies": {
     "@vueuse/core": "^4.11.0",
+    "@tauri-apps/api": "*",
     "axios": "^0.21.1",
     "sanitize-filename": "^1.6.3",
     "vue": "^3.0.11",
@@ -15,6 +16,7 @@
     "vue-router": "^4.0.6"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "*",
     "@vitejs/plugin-vue": "^1.2.1",
     "@vue/compiler-sfc": "^3.0.5",
     "sass": "^1.32.8",
