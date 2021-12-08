@@ -93,15 +93,15 @@ export default defineComponent({
 
       videoData: {
         downloadData: {
-          file_name: undefined,
-          artist: undefined,
-          title: undefined,
+          file_name: '',
+          artist: '',
+          title: '',
 
           year: undefined,
         },
         staticData: {
           channelData: {
-            channel_name: undefined,
+            channel_name: '',
           },
           thumbnails: {
             maxres: {
